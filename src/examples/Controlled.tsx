@@ -19,7 +19,7 @@ function Controlled() {
   >({});
 
   useEffect(() => {
-    console.log(values);
+    // console.log(values);
   }, [values]);
 
   return (
