@@ -10,7 +10,6 @@ import {
 } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import Json from "@/components/ui/json";
-import { Car } from "lucide-react";
 
 const basicFormSchema = z.object({
   
@@ -80,6 +79,22 @@ const arrayFormSchema = z.object({
       }),
     )
     .describe("Rooms in your house"),
+    fans: z
+    .coerce.number({
+      invalid_type_error: "Kindly enter a number.",
+    })
+    .min(0, {
+      message: "Please enter a positive number",
+    })
+    .describe("How many fans do you have in your house?"),
+  lights: z
+    .coerce.number({
+      invalid_type_error: "Kindly enter a number.",
+    })
+    .min(0, {
+      message: "Please enter a positive number",
+    })
+    .describe("How many lights do you have in your house?"),
 })
 
 function PredictionResult({ predictionResult }) {
