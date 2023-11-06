@@ -62,7 +62,23 @@ const basicFormSchema = z.object({
 
 });
 
-const appliances = ["Fridge", "Dispenser", "Iron", "Electric Kettle"];
+const appliances = {
+  'Air Conditioner (Inverter)': 'Air Conditioner (Inverter)',
+  'Air Conditioner (Non-Inverter)': 'Air Conditioner (Non-Inverter)',
+  'Refrigerator': 'Refrigerator',
+  'Washing Machine': 'Washing Machine',
+  'Water Dispenser': 'Water Dispenser',
+  'Deep Freezer': 'Deep Freezer',
+  'Electric Oven': 'Electric Oven',
+  'Microwave Oven': 'Microwave Oven',
+  'Electric Kettle': 'Electric Kettle',
+  'Television': 'Television',
+  'Desktop Computer': 'Desktop Computer',
+  'Gaming Consoles/Laptops': 'Gaming Consoles/Laptops',
+  'Water heater/Electric Geyser': 'Water heater/Electric Geyser',
+  'Iron': 'Iron',
+  'Electric Stove': 'Electric Stove',
+}
 
 const arrayFormSchema = z.object({
   rooms: z
@@ -70,7 +86,7 @@ const arrayFormSchema = z.object({
       z.object({
         Appliances: z.array(
           z.object({
-            appliance: z.enum(appliances),
+            appliance: z.nativeEnum(appliances),
             hours: z
               .enum(["0-2", "2-4", "4-6", "6-8", "8-16", "16-24"])
               .describe("Daily Usage in Hours"),
@@ -97,7 +113,7 @@ const arrayFormSchema = z.object({
     .describe("How many lights do you have in your house?"),
 })
 
-function PredictionResult({ predictionResult }) {
+function PredictionResult({ predictionResult } : { predictionResult: number }) {
   return (
     <>
       <CardDescription>
